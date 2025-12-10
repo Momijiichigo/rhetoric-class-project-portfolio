@@ -23,6 +23,10 @@ docNavLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
         const targetDoc = link.dataset.docLink;
+        if (targetDoc === 'research' || targetDoc === 'references') {
+            document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
         const targetButton = document.querySelector(`[data-doc="${targetDoc}"]`);
         if (targetButton) {
             targetButton.click();
