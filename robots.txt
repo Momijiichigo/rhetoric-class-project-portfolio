@@ -1,0 +1,4 @@
+# Prevent all web crawlers from indexing this site
+# This will request that search engines do not crawl any pages.
+User-agent: *
+Disallow: /
