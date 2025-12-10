@@ -7,7 +7,7 @@ const docSources = {
     cover: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/cover_letter.pdf&embedded=true',
     sop: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/sop.pdf&embedded=true',
     research: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
-    references: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
+    references: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/references.pdf&embedded=true',
 };
 
 docButtons.forEach((button) => {
