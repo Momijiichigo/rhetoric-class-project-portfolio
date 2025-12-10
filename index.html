@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Daichi Suwa | Research Portfolio</title>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				color-scheme: dark;
+				--bg: #030c16;
+				--bg-soft: #091a2c;
+				--panel: #0f2842;
+				--panel-soft: #153453;
+				--text: #f4f7fb;
+				--muted: #b7c4d6;
+				--accent: #f4ac45;
+				--accent-2: #66f7f1;
+				--accent-3: #7c6bff;
+				--border: rgba(255, 255, 255, 0.08);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: "Space Grotesk", "Source Sans 3", sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				line-height: 1.6;
+				overflow-x: hidden;
+			}
+
+			a {
+				color: inherit;
+			}
+
+			.site-header {
+				position: sticky;
+				top: 0;
+				z-index: 10;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem clamp(1.5rem, 5vw, 4rem);
+				background: rgba(3, 12, 22, 0.85);
+				backdrop-filter: blur(16px);
+				border-bottom: 1px solid var(--border);
+			}
+
+			.brand-mark {
+				font-size: 1.1rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+
+			.doc-nav {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			.doc-nav a {
+				text-decoration: none;
+				padding: 0.45rem 0.9rem;
+				border-radius: 999px;
+				border: 1px solid transparent;
+				transition: border-color 160ms ease, color 160ms ease;
+				font-size: 0.9rem;
+				color: var(--muted);
+			}
+
+			.doc-nav a:hover,
+			.doc-nav a:focus-visible {
+				border-color: rgba(244, 172, 69, 0.5);
+				color: var(--text);
+				outline: none;
+			}
+
+			.site-grid {
+				display: flex;
+				flex-direction: column;
+				gap: 3rem;
+				padding: clamp(1.5rem, 4vw, 3.5rem);
+				max-width: 1100px;
+				margin: 0 auto 4rem;
+			}
+
+			.hero {
+				position: relative;
+				display: grid;
+				gap: 2rem;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				padding: clamp(2rem, 4vw, 4rem);
+				border-radius: 32px;
+				background: radial-gradient(circle at 20% 20%, #123863, var(--panel));
+				overflow: hidden;
+			}
+
+			.hero::after,
+			.hero::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(
+					circle at var(--x, 80%) var(--y, 20%),
+					rgba(102, 247, 241, 0.11),
+					transparent 60%
+				);
+				animation: float 16s linear infinite;
+				pointer-events: none;
+				mix-blend-mode: screen;
+			}
+
+			.hero::before {
+				--x: 20%;
+				--y: 80%;
+				animation-duration: 22s;
+				opacity: 0.7;
+			}
+
+			@keyframes float {
+				0% {
+					transform: scale(1) translate(0, 0);
+				}
+				50% {
+					transform: scale(1.05) translate(-10px, 8px);
+				}
+				100% {
+					transform: scale(1) translate(0, 0);
+				}
+			}
+
+			.hero-text {
+				position: relative;
+				z-index: 1;
+			}
+
+			.hero-text h1 {
+				margin: 0 0 0.3rem;
+				font-size: clamp(2.4rem, 5vw, 3.6rem);
+				letter-spacing: 0.03em;
+			}
+
+			.hero-text p {
+				margin: 0 0 1rem;
+				color: var(--muted);
+				max-width: 52ch;
+			}
+
+			.hero-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin: 1.5rem 0 2rem;
+			}
+
+			.hero-buttons a {
+				text-decoration: none;
+				border: 1px solid var(--border);
+				color: var(--text);
+				padding: 0.7rem 1.3rem;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.04);
+				transition: transform 160ms ease, background 160ms ease;
+			}
+
+			.hero-buttons a:hover {
+				background: rgba(102, 247, 241, 0.12);
+				transform: translateY(-2px);
+			}
+
+			.hero-meta {
+				margin: 0.6rem 0 1.4rem;
+				color: var(--muted);
+				display: flex;
+				flex-direction: column;
+				gap: 0.2rem;
+			}
+
+			.hero-meta a {
+				text-decoration: none;
+				color: var(--text);
+			}
+
+			.hero-media {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+			}
+
+			.headshot {
+				width: min(320px, 80%);
+				aspect-ratio: 4 / 5;
+				margin: 0 auto 1rem;
+				border-radius: 28px;
+				overflow: hidden;
+				border: 2px dashed rgba(255, 255, 255, 0.15);
+				display: grid;
+				place-items: center;
+				background: linear-gradient(145deg, rgba(244, 172, 69, 0.25), rgba(102, 247, 241, 0.25));
+				color: rgba(255, 255, 255, 0.7);
+				font-weight: 600;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+                background-image: url(./headshot.webp);
+                /* width: min(300px, 90%);
+                height: min(150px, 90%); */
+                background-size: cover;
+                background-position: center;
+                /* border-radius: 1em; */
+                padding: 0.5rem;
+			}
+/* 
+			.orbit-graphic img {
+				width: min(300px, 90%);
+				border-radius: 24px;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				background: rgba(255, 255, 255, 0.02);
+				padding: 0.5rem;
+			} */
+
+			section {
+				padding: clamp(1.2rem, 3vw, 2.4rem) 0;
+				border: none;
+				border-radius: 0;
+				position: relative;
+			}
+
+			section h2 {
+				margin-top: 0;
+				font-size: 1.7rem;
+			}
+
+			.divider {
+				height: 1px;
+				width: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+				margin: 2rem 0;
+			}
+
+			.subgrid {
+				display: grid;
+				gap: 1.2rem;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			}
+
+			.card {
+				background: var(--panel-soft);
+				border-radius: 18px;
+				padding: 1.1rem 1.3rem;
+				border: 1px solid var(--border);
+			}
+
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				padding: 0.25rem 0.75rem;
+				border-radius: 999px;
+				font-size: 0.85rem;
+				color: var(--accent-2);
+				background: rgba(102, 247, 241, 0.12);
+				margin-bottom: 0.7rem;
+			}
+
+			.timeline {
+				border-left: 2px solid rgba(255, 255, 255, 0.15);
+				padding-left: 1.4rem;
+				display: flex;
+				flex-direction: column;
+				gap: 1.7rem;
+			}
+
+			.timeline-item {
+				position: relative;
+			}
+
+			.timeline-item::before {
+				content: "";
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background: var(--accent);
+				position: absolute;
+				left: -1.95rem;
+				top: 0.4rem;
+			}
+
+			.works-grid,
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 1.3rem;
+			}
+
+			.works-grid article,
+			.projects-grid article {
+				background: rgba(255, 255, 255, 0.02);
+				border-radius: 18px;
+				padding: 1.3rem;
+				border: 1px solid var(--border);
+				display: flex;
+				flex-direction: column;
+				gap: 0.6rem;
+			}
+
+			.list {
+				padding-left: 1.1rem;
+				margin: 0;
+				color: var(--muted);
+			}
+
+			.document-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.8rem;
+			}
+
+			.document-links button {
+				border: 1px solid var(--border);
+				border-radius: 30px;
+				padding: 0.55rem 1.2rem;
+				background: transparent;
+				color: var(--text);
+				font-size: 0.95rem;
+				cursor: pointer;
+				transition: background 160ms ease;
+			}
+
+			.document-links button.active,
+			.document-links button:hover {
+				background: rgba(244, 172, 69, 0.2);
+				border-color: rgba(244, 172, 69, 0.6);
+			}
+
+			.doc-preview {
+				margin-top: 1rem;
+				border-radius: 16px;
+				overflow: hidden;
+				border: 1px solid var(--border);
+				min-height: 320px;
+			}
+
+			iframe {
+				width: 100%;
+				height: 420px;
+				border: 0;
+			}
+
+			.media-strip {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1rem;
+				margin-top: 1.5rem;
+			}
+
+			.media-strip img {
+				width: 100%;
+				border-radius: 16px;
+				border: 1px dashed rgba(255, 255, 255, 0.2);
+				object-fit: cover;
+			}
+
+			canvas {
+				width: 100%;
+				height: 220px;
+			}
+
+			.community-grid {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+			}
+
+			footer {
+				text-align: center;
+				color: var(--muted);
+				margin-bottom: 3rem;
+			}
+
+			@media (max-width: 640px) {
+				.hero-buttons {
+					flex-direction: column;
+				}
+				iframe {
+					height: 360px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="brand-mark">Daichi Suwa</div>
+			<nav class="doc-nav" aria-label="Document shortcuts">
+				<a href="#documents" data-doc-link="resume">Resume</a>
+				<a href="#documents" data-doc-link="cover">Cover Letter</a>
+				<a href="#documents" data-doc-link="sop">Statement</a>
+				<a href="#documents" data-doc-link="research">Research &amp; Projects</a>
+				<a href="#documents" data-doc-link="references">References</a>
+			</nav>
+		</header>
+		<main class="site-grid">
+			<header class="hero" id="top">
+				<div class="hero-text">
+					<div class="badge">Condensed Matter Theory</div>
+					<h1>Daichi Suwa</h1>
+					<div class="hero-meta">
+						<span>Austin, Texas</span>
+						<span><a href="tel:+15129208238">+1 (512) 920-8238</a></span>
+						<span><a href="mailto:daichi.suwa@utexas.edu">daichi.suwa@utexas.edu</a></span>
+					</div>
+					<p>
+						Physics Honors researcher at The University of Texas at Austin focused on
+						correlated electronic phases in graphene multilayers, vortex physics, and
+						computational approaches that unite Hartree-Fock solvers with continuum
+						models and GPU acceleration.
+					</p>
+					<div class="hero-buttons">
+						<a href="https://www.google.com/" target="_blank" rel="noreferrer"
+							>Resume</a
+						>
+						<a href="https://www.google.com/" target="_blank" rel="noreferrer"
+							>Cover Letter</a
+						>
+						<a href="https://www.google.com/" target="_blank" rel="noreferrer"
+							>Statement of Purpose</a
+						>
+						<a href="https://www.google.com/" target="_blank" rel="noreferrer"
+							>Research &amp; Projects</a
+						>
+						<a href="https://www.google.com/" target="_blank" rel="noreferrer"
+							>Reference List</a
+						>
+					</div>
+				</div>
+				<div class="hero-media">
+					<div class="headshot"></div>
+					<!-- <div class="orbit-graphic">
+						<img src="./lattice.png" alt="Graphene lattice illustration" />
+					</div> -->
+				</div>
+			</header>
+
+			<section id="about">
+				<h2>Research Narrative</h2>
+				<p>
+					I explore the microscopic drivers of correlated electronic behavior in graphene-based
+					heterostructures. My work bridges analytical theory (tight-binding, continuum models,
+					QFT-inspired techniques) with computational tools such as custom Hartree-Fock solvers,
+					GPU computing, and advanced optimization (DIIS). I am driven by questions about how
+					symmetry breaking, topology, and vortex physics manifest in real materials and how those
+					answers translate into applications for superconductivity and quantum technologies.
+				</p>
+				<div class="divider"></div>
+				<div class="subgrid">
+					<div class="card">
+						<strong>Current Focus</strong>
+						<ul class="list">
+							<li>Chiral vs nodal p-wave pairing in graphene superconductors</li>
+							<li>Energy landscape of vortex core textures under bias</li>
+							<li>Ab-initio informed continuum models for multilayer systems</li>
+						</ul>
+					</div>
+					<div class="card">
+						<strong>Toolkit</strong>
+						<ul class="list">
+							<li>Julia, Rust, Python, CUDA.jl, WGPU</li>
+							<li>GPU-first Hartree-Fock &amp; SCF solvers</li>
+							<li>Markov-chain sampling, FFT accelerations, DIIS</li>
+						</ul>
+					</div>
+					<div class="card">
+						<strong>Impact Themes</strong>
+						<ul class="list">
+							<li>Mapping energetically stable phases in multilayers</li>
+							<li>Designing experiments to validate theoretical predictions</li>
+							<li>Translating condensed matter insight to quantum industry</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section id="education">
+				<h2>Education</h2>
+				<div class="timeline">
+					<article class="timeline-item">
+						<h3>University of Texas at Austin</h3>
+						<p>
+							B.S. Physics (Honors), Dean's Scholar | Focus: Theoretical &amp; Condensed Matter Physics
+						</p>
+						<small>Graduation May 2026 · GPA 3.62 (Upper Division 3.65) · Austin, TX</small>
+					</article>
+					<article class="timeline-item">
+						<h3>Mountain View High School</h3>
+						<p>Mountain View, CA · Graduated May 2022</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="experience">
+				<h2>Research Experience</h2>
+				<div class="works-grid">
+					<article>
+						<div class="badge">Jul 2024 – Present · Austin, TX</div>
+						<h3>Condensed Matter Theory — Allan H. MacDonald's Group</h3>
+						<p>
+							Theory of thin-film graphene materials, computational modeling, and energetic phase mapping.
+						</p>
+						<ul class="list">
+							<li>Built Hartree-Fock SCF solvers in Julia from first principles.</li>
+							<li>Modeled tight-binding monolayer and rhombohedral multilayer systems.</li>
+							<li>Ran state-mapping sweeps over spin/valley polarization, carrier density, and interlayer bias.</li>
+						</ul>
+					</article>
+					<article>
+						<div class="badge">Jan 2023 – Nov 2023 · Austin, TX</div>
+						<h3>Magnetic Matter Experiment — Freshman Research Initiative</h3>
+						<p>Perovskite synthesis and thin-film fabrication aimed at superconductivity discovery.</p>
+						<ul class="list">
+							<li>Synthesized RNiO<sub>3</sub> samples to probe optimal doping.</li>
+							<li>Executed e-beam deposition workflows under vacuum and thermal constraints.</li>
+						</ul>
+					</article>
+				</div>
+			</section>
+
+			<section id="works">
+				<h2>Works in Progress</h2>
+				<div class="works-grid">
+					<article>
+						<div class="badge">Expected Spring 2026 Submission</div>
+						<h3>Microscopic Theory of Vortex Cores in Graphene Superconductors</h3>
+						<p>
+							UT Austin · Advisor: Prof. Allan H. MacDonald
+						</p>
+						<ul class="list">
+							<li>Investigating competition between fully gapped chiral $(p + i p)$ and nodal $(p_x, p_y)$ states.</li>
+							<li>Exploring how broken time-reversal symmetry in band structures lifts degeneracy.</li>
+							<li>Developing continuum models to compare energetic stability of vortex textures.</li>
+						</ul>
+					</article>
+					<article>
+						<div class="badge">Visual Narrative</div>
+						<h3>Graphene Phase Atlas</h3>
+						<p>
+							A lightweight data visualization concept summarizing phase stability as bias varies.
+						</p>
+						<div class="media-strip">
+							<img src="https://via.placeholder.com/320x220.png?text=Phase+Diagram" alt="Phase diagram placeholder" />
+							<img src="https://via.placeholder.com/320x220.png?text=Device+Stack" alt="Device stack illustration placeholder" />
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section id="skills">
+				<h2>Skills &amp; Methods</h2>
+				<div class="subgrid">
+					<div class="card">
+						<strong>Languages</strong>
+						<p>English · Japanese</p>
+						<strong>Programming</strong>
+						<p>Rust · Julia · Python · Lean4 · TypeScript · C/C++</p>
+					</div>
+					<div class="card">
+						<strong>Technologies</strong>
+						<p>
+							GPGPU · CUDA.jl · WGPU · OS development · WASM · Binary parsing · Tauri · Linux
+						</p>
+					</div>
+					<div class="card">
+						<strong>Computational Methods</strong>
+						<p>
+							Hartree-Fock SCF · DIIS · Markov Chain Monte Carlo · FFT Convolution
+						</p>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<canvas id="methodsChart" aria-label="Computational proficiency chart"></canvas>
+			</section>
+
+			<section id="documents">
+				<h2>Document Hub</h2>
+				<p>Select a document to preview the PDF and access a downloadable link.</p>
+				<div class="document-links" role="tablist">
+					<button class="active" data-doc="resume">Resume</button>
+					<button data-doc="cover">Cover Letter</button>
+					<button data-doc="sop">Statement of Purpose</button>
+					<button data-doc="research">Research &amp; Projects</button>
+					<button data-doc="references">Reference List</button>
+				</div>
+				<div class="doc-preview">
+					<iframe
+						id="docFrame"
+						title="PDF preview"
+						src="https://docs.google.com/viewer?url=http://www.dummy.com/resume.pdf&amp;embedded=true"
+					></iframe>
+				</div>
+			</section>
+
+			<section id="projects">
+				<h2>Selected Personal Projects</h2>
+				<div class="projects-grid">
+					<article>
+						<div class="badge">May 2025 – Present</div>
+						<h3>Fundamental Particle Field Simulation</h3>
+						<p>
+							GPU-backed lattice QED simulator evolving field configurations using Euler-Lagrange equations.
+						</p>
+						<ul class="list">
+							<li>Bridges coursework on the Standard Model with practical numerics.</li>
+							<li>Explores hardware-efficient solvers on modern GPUs.</li>
+						</ul>
+					</article>
+					<article>
+						<div class="badge">Jan 2025 – Present</div>
+						<h3>Digital Guitar Effector (Rust)</h3>
+						<p>
+							Embedded RP2040 platform performing FFT-based tone shaping for real-time instrument morphing.
+						</p>
+						<ul class="list">
+							<li>Rust + Embassy-rs + I<sup>2</sup>S pipelines for low-latency DSP.</li>
+							<li>Pursues violin-like articulations from electric guitar inputs.</li>
+						</ul>
+					</article>
+					<article>
+						<div class="badge">Jun 2023 – Mar 2025</div>
+						<h3>Rust Hot Module Replacement PoC</h3>
+						<p>Low-level exploration enabling HMR in compile-time-heavy toolchains.</p>
+						<ul class="list">
+							<li>Implemented reloadable binary interfaces for Rust modules.</li>
+							<li>Reduced iteration time for resource-intensive builds.</li>
+						</ul>
+					</article>
+				</div>
+			</section>
+
+			<section id="awards">
+				<h2>Awards &amp; Honors</h2>
+				<div class="subgrid">
+					<div class="card">
+						<strong>Walter E. Millet Endowed Scholarship</strong>
+						<p>University of Texas at Austin · Sept 2025</p>
+					</div>
+					<div class="card">
+						<strong>Melvin J. Rieger Scholarship Fund</strong>
+						<p>University of Texas at Austin · Sept 2024 &amp; Sept 2023</p>
+					</div>
+					<div class="card">
+						<strong>Qiskit Fall Fest — 3rd Prize</strong>
+						<p>UT Quantum Collective · Oct 2022</p>
+					</div>
+					<div class="card">
+						<strong>Dean's Scholars Honors Program</strong>
+						<p>University of Texas at Austin · June 2022</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="community">
+				<h2>Community &amp; Leadership</h2>
+				<div class="community-grid">
+					<article class="card">
+						<strong>Austin Parkour Community — Member</strong>
+						<p>Oct 2023 – Present · Austin, TX</p>
+					</article>
+					<article class="card">
+						<strong>Society of Physics Students — Member</strong>
+						<p>Aug 2022 – Present · The University of Texas at Austin</p>
+					</article>
+				</div>
+			</section>
+
+			<footer>
+				© <span id="year"></span> Daichi Suwa · Portfolio
+			</footer>
+		</main>
+
+		<script>
+			const docButtons = document.querySelectorAll('[data-doc]');
+			const docFrame = document.getElementById('docFrame');
+			const docNavLinks = document.querySelectorAll('[data-doc-link]');
+			const docSources = {
+				resume: 'https://docs.google.com/viewer?url=http://www.dummy.com/resume.pdf&embedded=true',
+				cover: 'https://docs.google.com/viewer?url=http://www.dummy.com/cover-letter.pdf&embedded=true',
+				sop: 'https://docs.google.com/viewer?url=http://www.dummy.com/statement-of-purpose.pdf&embedded=true',
+				research: 'https://docs.google.com/viewer?url=http://www.dummy.com/research-and-projects.pdf&embedded=true',
+				references: 'https://docs.google.com/viewer?url=http://www.dummy.com/reference-list.pdf&embedded=true',
+			};
+
+			docButtons.forEach((button) => {
+				button.addEventListener('click', () => {
+					docButtons.forEach((btn) => btn.classList.remove('active'));
+					button.classList.add('active');
+					const key = button.dataset.doc;
+					docFrame.src = docSources[key];
+				});
+			});
+
+			docNavLinks.forEach((link) => {
+				link.addEventListener('click', (event) => {
+					event.preventDefault();
+					const targetDoc = link.dataset.docLink;
+					const targetButton = document.querySelector(`[data-doc="${targetDoc}"]`);
+					if (targetButton) {
+						targetButton.click();
+					}
+					document.getElementById('documents').scrollIntoView({ behavior: 'smooth' });
+				});
+			});
+
+			const chartCanvas = document.getElementById('methodsChart');
+			const bars = [
+				{ label: 'Hartree-Fock SCF', value: 92, color: '#66f7f1' },
+				{ label: 'DIIS Acceleration', value: 86, color: '#f4ac45' },
+				{ label: 'MCMC Sampling', value: 78, color: '#7c6bff' },
+				{ label: 'FFT Pipelines', value: 84, color: '#8efdaa' },
+			];
+
+			function drawChart() {
+				if (!chartCanvas || !chartCanvas.getContext) return;
+				const rect = chartCanvas.getBoundingClientRect();
+				const dpr = window.devicePixelRatio || 1;
+				chartCanvas.width = rect.width * dpr;
+				chartCanvas.height = 220 * dpr;
+				const ctx = chartCanvas.getContext('2d');
+				ctx.scale(dpr, dpr);
+				const width = rect.width;
+				const padding = 30;
+				const barHeight = 24;
+				const gap = 18;
+				ctx.clearRect(0, 0, width, 220);
+				ctx.font = '14px "Space Grotesk"';
+				ctx.fillStyle = 'rgba(255,255,255,0.6)';
+
+				bars.forEach((bar, index) => {
+					const y = padding + index * (barHeight + gap);
+					ctx.fillStyle = 'rgba(255,255,255,0.1)';
+					ctx.fillRect(padding, y, width - padding * 2, barHeight);
+					ctx.fillStyle = bar.color;
+					ctx.fillRect(padding, y, (bar.value / 100) * (width - padding * 2), barHeight);
+					ctx.fillStyle = '#f4f7fb';
+					ctx.fillText(`${bar.label} — ${bar.value}%`, padding, y - 6);
+				});
+			}
+
+			drawChart();
+			window.addEventListener('resize', drawChart);
+
+			document.getElementById('year').textContent = new Date().getFullYear();
+		</script>
+	</body>
+</html>
