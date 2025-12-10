@@ -4,10 +4,10 @@ const docNavLinks = document.querySelectorAll('[data-doc-link]');
 const docSources = {
     resume: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/resume.pdf&embedded=true',
     cv: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
-    cover: 'https://docs.google.com/viewer?url=http://www.dummy.com/cover-letter.pdf&embedded=true',
-    sop: 'https://docs.google.com/viewer?url=http://www.dummy.com/statement-of-purpose.pdf&embedded=true',
-    research: 'https://docs.google.com/viewer?url=http://www.dummy.com/research-and-projects.pdf&embedded=true',
-    references: 'https://docs.google.com/viewer?url=http://www.dummy.com/reference-list.pdf&embedded=true',
+    cover: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
+    sop: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
+    research: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
+    references: 'https://docs.google.com/viewer?url=https://momijiichigo.github.io/rhetoric-class-project-portfolio/CV.pdf&embedded=true',
 };
 
 docButtons.forEach((button) => {
